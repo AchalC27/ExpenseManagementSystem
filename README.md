@@ -5,6 +5,7 @@
 
 The Student Expense Management System is a web-based application designed to help students manage their financial activities. This system provides tools for logging daily expenses, tracking income sources, and organizing financial notes, helping students make informed financial decisions and promote responsible spending habits.
 
+![front](Screenshots/Screenshot 2024-05-17 051855.png)
 ## Table of Contents
 
 - [Problem Statement](#problem-statement)
@@ -122,105 +123,6 @@ The system uses a relational database to manage data efficiently. Here are the m
 - Ensure no transitive dependency.
 - Example: Ensure all attributes are directly dependent on the primary key.
 
-## SQL Queries
-
-### Total Expenses by Category for Each User
-
-```sql
-SELECT u.user_id, u.firstname, u.lastname, e.expensecategory, SUM(e.expense) AS total_expense
-FROM expenses e
-JOIN users u ON e.user_id = u.user_id
-GROUP BY u.user_id, u.firstname, u.lastname, e.expensecategory
-ORDER BY u.user_id, total_expense DESC;
-```
-
-### Average Expense Amount Per Category
-
-```sql
-SELECT e.expensecategory, AVG(e.expense) AS average_expense
-FROM expenses e
-GROUP BY e.expensecategory
-ORDER BY average_expense DESC;
-```
-
-### Users with Total Expenses Exceeding a Certain Amount
-
-```sql
-SELECT u.user_id, u.firstname, u.lastname, SUM(e.expense) AS total_expense
-FROM expenses e
-JOIN users u ON e.user_id = u.user_id
-GROUP BY u.user_id, u.firstname, u.lastname
-HAVING total_expense > 500
-ORDER BY total_expense DESC;
-```
-
-### Monthly Expenses for Each User
-
-```sql
-SELECT u.user_id, u.firstname, u.lastname, DATE_FORMAT(e.expensedate, '%Y-%m') AS month, SUM(e.expense) AS total_expense
-FROM expenses e
-JOIN users u ON e.user_id = u.user_id
-GROUP BY u.user_id, u.firstname, u.lastname, month
-ORDER BY u.user_id, month DESC;
-```
-
-### Top 3 Highest Expenses for Each User
-
-```sql
-SELECT e1.user_id, u.firstname, u.lastname, e1.expense, e1.expensedate, e1.expensecategory
-FROM expenses e1
-JOIN users u ON e1.user_id = u.user_id
-WHERE e1.expense IN (
-    SELECT e2.expense
-    FROM expenses e2
-    WHERE e2.user_id = e1.user_id
-    ORDER BY e2.expense DESC
-    LIMIT 3
-)
-ORDER BY e1.user_id, e1.expense DESC;
-```
-
-### Total Income and Expense for Each User
-
-```sql
-SELECT u.user_id, u.firstname, u.lastname, 
-       COALESCE(SUM(CASE WHEN n.title = 'Income' THEN n.notes END), 0) AS total_income,
-       COALESCE(SUM(e.expense), 0) AS total_expense
-FROM users u
-LEFT JOIN notes n ON u.user_id = n.user_id
-LEFT JOIN expenses e ON u.user_id = e.user_id
-GROUP BY u.user_id, u.firstname, u.lastname
-ORDER BY u.user_id;
-```
-
-### User Details with Their Latest Note
-
-```sql
-SELECT u.user_id, u.firstname, u.lastname, n.title, n.notes, n.notedate
-FROM users u
-LEFT JOIN notes n ON u.user_id = n.user_id
-WHERE n.notedate = (
-    SELECT MAX(n2.notedate)
-    FROM notes n2
-    WHERE n2.user_id = u.user_id
-)
-ORDER BY u.user_id;
-```
-
-### Expenses Above Average per Category
-
-```sql
-SELECT e.expense_id, u.user_id, u.firstname, u.lastname, e.expensecategory, e.expense, e.expensedate
-FROM expenses e
-JOIN users u ON e.user_id = u.user_id
-WHERE e.expense > (
-    SELECT AVG(e2.expense)
-    FROM expenses e2
-    WHERE e2.expensecategory = e.expensecategory
-)
-ORDER BY e.expense DESC;
-```
-
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
@@ -231,4 +133,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Feel free to adjust any sections as needed to better fit your project.
