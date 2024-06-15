@@ -5,7 +5,6 @@
 
 The Student Expense Management System is a web-based application designed to help students manage their financial activities. This system provides tools for logging daily expenses, tracking income sources, and organizing financial notes, helping students make informed financial decisions and promote responsible spending habits.
 
-![front](Screenshots/Screenshot 2024-05-17 051855.png)
 ## Table of Contents
 
 - [Problem Statement](#problem-statement)
