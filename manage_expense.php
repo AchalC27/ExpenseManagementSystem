@@ -46,6 +46,7 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
             </div>
             <div class="sidebar-heading">Settings </div>
             <div class="list-group list-group-flush">
+                <a href="pro.php" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> FinFlow PRO</a>
                 <a href="profile.php" class="list-group-item list-group-item-action "><span data-feather="user"></span> Profile</a>
                 <a href="logout.php" class="list-group-item list-group-item-action "><span data-feather="power"></span> Logout</a>
             </div>
@@ -86,6 +87,11 @@ $exp_fetched = mysqli_query($con, "SELECT * FROM expenses WHERE user_id = '$user
                 <div class="row justify-content-center">
 
                     <div class="col-md-6">
+                        <div class="text-right mb-3">
+                            <a href="generate_expense_pdf.php" class="btn btn-primary">
+                                <span data-feather="download"></span> Generate PDF Report
+                            </a>
+                        </div>
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="text-center">

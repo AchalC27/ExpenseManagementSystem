@@ -133,6 +133,7 @@ if (isset($_GET['delete'])) {
             </div>
             <div class="sidebar-heading">Settings </div>
             <div class="list-group list-group-flush">
+                <a href="pro.php" class="list-group-item list-group-item-action"><span data-feather="dollar-sign"></span> FinFlow PRO</a>
                 <a href="profile.php" class="list-group-item list-group-item-action "><span data-feather="user"></span> Profile</a>
                 <a href="logout.php" class="list-group-item list-group-item-action "><span data-feather="power"></span> Logout</a>
             </div>
