@@ -125,7 +125,7 @@ include("session.php"); // Include session management
                                             <input class="pay-logo" type="text" name="card_number" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="0000-0000-0000-0000" required>
 
                                             <h5>Email ID</h5>
-                                            <input class="pay-logo" type="text" name="card_name" required placeholder="Enter your email ID">
+                                            <input class="pay-logo" type="email" name="email" required placeholder="Enter your email ID">
                                         </div>
                                         <div class="transaction">
                                             <div class="tab-form-left user-form">
