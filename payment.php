@@ -158,6 +158,7 @@ include("session.php"); // Include session management
                                             <div class="clear"></div>
                                         </div>
                                         <input type="submit" class="confirm-btn" value="SEND">
+                                        
                                     </form>
                                 </div>
                             </div>

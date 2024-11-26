@@ -74,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Send mail
         $mail->send();
         echo "Email sent successfully.";
+        header("Location: payment_success.php");
     } catch (Exception $e) {
         echo "Email could not be sent. Error: {$mail->ErrorInfo}";
     }
